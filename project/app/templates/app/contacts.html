@@ -1,59 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контаткты</title>
-    <link rel="stylesheet" href='{% static "style.css" %}'>
-</head>
-<body>
-    <section class="hero  is-fullheight" style="background-color: rgb(242,242,242);">
-        <div class="hero-head">
-          <header class="navbar">
-            <div class="container">
-              <div class="navbar-brand">
-               <a class="navbar-item" href=" {%url 'app:index' %}">
+{% extends 'app\layout.html' %}
 
-                  <img
-                    src="https://bulma.io/images/bulma-type-white.png"
-                    alt="Logo"
-                  />
-                </a>
-                <span class="navbar-burger" data-target="navbarMenuHeroC">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-              </div>
-              <div id="navbarMenuHeroC" class="navbar-menu">
-                <div class="navbar-end">
-                    <a href="{% url  'app:index' %}" class="navbar-item " > Home </a>
-                    <a href="{% url  'app:about' %}" class="navbar-item"> About </a>
-                    <a href="{% url  'app:contacts' %}" class="navbar-item is-active"> Contacts </a>
-                  </div>
-              </div>
-            </div>
-          </header>
-        </div>
-   
-   
-        <div class="hero-body">
-          <div class="container">
-            
+{% block content %}
 
-          </div>
-
-          {{ text }}
-
-      
-         
-        </div>
-      </section>
-      
-   
-   
-</body>
-</html>
-
-
+<div class="container has-text-centered">
+  <div class="title has-text-centered">
+    Страница с контактами
+  </div>
+</div>
+{% endblock %}
