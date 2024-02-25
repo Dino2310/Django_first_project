@@ -4,14 +4,39 @@
 
 <div class="container has-text-centered">
   <div>
-    <div class="title ">
-      КОНТАКТЫ
+    <div class="title has-text-centered">
+      {{title}}
     </div>
     <div class = "card-content" style="max-width: 400px;margin: 0 auto;">
       {{text}}
     </div>
+    <div class = "card-content" style="max-width: 400px;margin: 0 auto;">
+      {{callMe}}
+    </div>
     <div class="container">
-      {{}}
+     <div class="columns is-centered">
+      <div class="column is-4" >
+          <div class="box"style="height: 260px;">
+            <span class="material-symbols-outlined" style="background-color: #26c772;border-radius: 50%;">
+              location_on
+              </span>
+            <div class="title has-text-centered">{{textOffice}}</div>
+            <div class="content">{{addr}}</div>
+          </div>
+        </div>
+          <div class="column is-4">
+            <div class="box" style="height: 260px;">
+              <span class="material-symbols-outlined" style="background-color: #26c772;border-radius: 50%;">
+                call
+                </span>
+              <div class="title">{{textTel}}</div>
+              {% for i in tel %}
+              <div class="contetn">{{i}}</div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

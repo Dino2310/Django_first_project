@@ -1,47 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О НАС</title>
-    <link rel="stylesheet" href='{% static "style.css" %}'>
-</head>
-<body>
-    <section class="hero is-fullheight">
-        <div class="hero-head">
-          <header class="navbar">
-            <div class="container">
-              <div class="navbar-brand">
-                <a class="navbar-item" href=" {%url 'app:index' %}">
-                  <img
-                    src="https://bulma.io/images/bulma-type-white.png"
-                    alt="Logo"
-                  />
-                </a>
-                <span class="navbar-burger" data-target="navbarMenuHeroC">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-              </div>
-              <div id="navbarMenuHeroC" class="navbar-menu">
-                <div class="navbar-end">
-                    <a href="{% url  'app:index' %}" class="navbar-item " > Home </a>
-                    <a href="{% url  'app:about' %}" class="navbar-item is-active"> About </a>
-                    <a href="{% url  'app:contacts'%}" class="navbar-item "> Contacts </a>
-                  </div>
-              </div>
-            </div>
-          </header>
-        </div>
-   
-   
-        <div class="hero-body">
-            {{ text }}
-        </div>
-      </section>
-   
-   
-</body>
-</html>
+{% extends 'app\layout.html' %}
+{% block content %}
+<div class="contaner">
+  <div class="columns is-left">
+    <div class="column is-3">
+      <img src="https://img2.freepng.ru/20180821/qfz/kisspng-businessperson-woman-company-informal-attire--5b7c193bc4cdf4.1504908415348595798061.jpg" alt="" style="height: 250px; width: 250px; border-radius: 50%;">
+
+    </div>
+    <div class="column is-6">
+      <div class="title">
+        О НАС
+      </div>
+      <div class="content">
+        {{text}}
+      </div>
+      <button class="button">Читать далее</button>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
