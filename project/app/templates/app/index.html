@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-  <div class="columns is-centered">
+  <div class="tabs is-1" >
       {% for i in posts%}
       <div class="column is-4">
           <div class="box" style="min-height: 200px;">
@@ -12,6 +12,7 @@
               <div class="content has-text-grey-light">
                   {{i.slice}}
               </div>
+              <div class = "content"> Автор: {{i.author}}</div>
               <button class="button is-fullwidth is-info is-outlined is-size-6">Читать далее &#8594</button>
           </div>
       </div>
