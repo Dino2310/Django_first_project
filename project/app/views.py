@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import  HttpResponseNotFound
 from .models import Post, Product
 from .contentTest import abouts, conatact
 
@@ -20,4 +20,9 @@ def about (request):
 
 def contacts(request):
     return render(request, 'app/contacts.html',conatact)
+
+def post_detal(request, slug):
+    post =Post.objects.filter(slug=slug)
+    if post: return render(request, "app/post.html", { "post" :post[0]} )
+    return index(request)
 
