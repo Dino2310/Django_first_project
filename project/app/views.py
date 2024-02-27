@@ -24,5 +24,7 @@ def contacts(request):
 def post_detal(request, slug):
     post =Post.objects.filter(slug=slug)
     if post: return render(request, "app/post.html", { "post" :post[0]} )
-    return index(request)
+    return err(request)
 
+def err(request):
+    return render(request, 'err404.html', {})
