@@ -1,0 +1,17 @@
+{% extends 'app\layout.html' %}
+
+{% block content %}
+<div>
+<div class="title has-text-centered" style="color: aliceblue; margin-bottom: 250px;">{{ authors.0.author }}</div>
+<div class="columns">
+    {%for i in authors%}
+    <div class="column is-4" >
+        <a href="{% url 'app:post' i.slug %}">
+            <div class="title">{{i.title}}</div>
+            <div class="content">{{i.slice_100}}</div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
