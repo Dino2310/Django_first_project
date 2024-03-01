@@ -1,9 +1,9 @@
 {% extends 'app\layout.html' %}
 
 {% block content %}
-<div class="box" style="min-width: 100%; min-height: 80vh;">
+<div class="box " style="min-width: 100%; min-height: 80vh;">
     <div class="title has-text-centered is-size-4 mt-6">{{post.title}}</div>
-    <div class="contetn">
+    <div class="contetn image-div">
         <img src="{{ post.image.url }}" class="image post-image" alt="">
         {{post.content}}
     </div>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="subtitle">
                             Разработчик, Москва, Россия
-                            <a href="">посты автора</a>
+                            <a href="{% url 'app:author' post.author %}">посты автора</a>
                         </div>
                         <div class="content">
                             <div class="title is-5"> Обо мне: </div>

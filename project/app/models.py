@@ -18,8 +18,12 @@ class Post(models.Model):
     image = models.ImageField(default="image.jpg", blank= True)
 
 
+
     def slice(self):
         return " ".join(self.content.split()[:3]) + "..."
+    
+    def slice_100(self):
+        return "".join(self.content[:100]) + "..."
 
     # auto_now - снимок и автоматическое сохранение времеи при любом сохранении таблицы
     # auto_now_add - снимок и автоматическое схораниение времени только один раз
