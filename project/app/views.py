@@ -29,12 +29,12 @@ def post_detal(request, slug):
 
 
 def author_detal(request, at):
-    print(f"{at=}")
-    author_id = User.objects.get(username = at).id
-    print(author_id)
-    post = Post.objects.filter(author = author_id)
-    print(Post.objects.filter(author = 2)[0].author)
+    post = Post.objects.filter(author__username = at)
     return render(request, "app/author.html", { "authors" : post} )
 
 def err(request, exception):
     return render(request, '404.html', {})
+
+
+def post_create(request):
+    return render(request, "app/index.html", {})

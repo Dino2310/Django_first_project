@@ -12,7 +12,7 @@
               <div class="content has-text-grey-light">
                   {{post.slice}}
               </div>
-              <a href="{% url 'app:post' post.slug %}"><img src="{{ post.image.url }}" alt="" style="border-radius: 50%;width: 100px; height: 100px;"></a>
+              <a href="{% url 'app:post' post.slug %}"><img src="{{ image.url  }}" alt="" style="border-radius: 50%;width: 100px; height: 100px;"></a>
               <div class = "content"> Автор: {{post.author}}</div>
               <a href="{% url 'app:post' post.slug %}" class="button is-fullwidth is-info is-outlined is-size-6">Читать далее &#8594</a>
           </div>

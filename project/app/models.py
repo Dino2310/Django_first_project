@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+    
+
+
 class Post(models.Model):
     def __str__(self):
         return self.title
@@ -15,7 +19,7 @@ class Post(models.Model):
     #DateTimeField  - поле хранящее дату и время
     update_at = models.DateTimeField(auto_now = True)
     author = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
-    image = models.ImageField(default="image.jpg", blank= True)
+    
 
 
 
@@ -36,3 +40,8 @@ class Product (models.Model):
     price = models.FloatField()
     production_date= models.DateField()
     descreption = models.TextField()
+
+
+class Photo (models.Model):
+    image = models.ImageField(default="image.jpg", blank = True)
+    post = models.ForeignKey('app.Post', null = True, on_delete = models.CASCADE)

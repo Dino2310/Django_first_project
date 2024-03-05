@@ -3,9 +3,13 @@
 {% block content %}
 <div class="box " style="min-width: 100%; min-height: 80vh;">
     <div class="title has-text-centered is-size-4 mt-6">{{post.title}}</div>
-    <div class="contetn image-div">
-        <img src="{{ post.image.url }}" class="image post-image" alt="">
-        {{post.content}}
+    <div class="columns is-centered is-multiline">
+        {% for image in post.photo_set.all %}
+        <div class="column is-4">
+            <img src="{{ image.image.url }}" class="image post-image" alt="">
+        </div>
+        {% endfor %}
+        <div class="image-div"> {{ post.content}}</div>
     </div>
     <hr>
     <div class="columns author">
@@ -41,7 +45,8 @@
                         </div>
                         <div class="content">
                             <div class="title is-5"> Обо мне: </div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, quia?</div>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, quia?
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,11 +56,11 @@
                 <button class="button mr-6 px-6">
                     <ion-icon name="chatbubble"></ion-icon>
                 </button>
-                <button class = "button">
-                    <ion-icon name = 'thumbs-up'></ion-icon>
+                <button class="button">
+                    <ion-icon name='thumbs-up'></ion-icon>
                 </button>
-                <button class = "button">
-                    <ion-icon name = 'thumbs-down'></ion-icon>
+                <button class="button">
+                    <ion-icon name='thumbs-down'></ion-icon>
                 </button>
             </div>
             <div class="field my-4">

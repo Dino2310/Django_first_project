@@ -1,49 +1,71 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>{{title}}</title>
-    <script src="{% static 'js.js' %}" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>{{title}}</title>
+  <script src="{% static 'js.js' %}" defer></script>
 </head>
-<body class="hero has-background-info is-fullheight" >
-        <div class="hero-head">
-          <header class="navbar">
-            <div class="container">
-              <div class="navbar-brand">
-                <a  href=" {%url 'app:index' %}">
-                  <img
-                    src="https://static.tildacdn.com/tild6631-3236-4566-a666-396338346534/623117703jpg.png"
-                    alt="Logo" height="60px" width="60px" style="margin-top: 10px;"
-                  />
-                </a>
-                <span class="navbar-burger" data-target="navbarMenuHeroC">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-              </div>
-              <div id="navbarMenuHeroC" class="navbar-menu">
-                <div class="navbar-end">
-                  <a href="/" class="navbar-item {% if request.path == '/' %} is-active {% endif %}"> Home </a>
-                  <a href="/about" class="navbar-item {% if request.path == '/about/' %} is-active {% endif %}"> About </a>
-                  <a href="/contacts" class="navbar-item {% if request.path == '/contacts/' %} is-active {% endif %}"> Contacts </a>
+
+<body class="hero has-background-info is-fullheight">
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href=" {%url 'app:index' %}">
+            <img src="https://static.tildacdn.com/tild6631-3236-4566-a666-396338346534/623117703jpg.png" alt="Logo"
+              height="60px" width="60px" style="margin-top: 10px;" />
+          </a>
+          <span class="navbar-burger" data-target="navbarMenuHeroC">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <div class="dropdown is-hoverable ">
+                <div class="dropdown-trigger">
+                  <a class="button is-info if-outlined is-inverted">
+                    Создать пост
+                  </a>
+                </div>
+                <div class="dropdown-menu ">
+                  <div class="dropdown-content">
+                    <a href="{% url 'app:post_create' %}">
+                      <ion-icon name='create' class="is-size-5"></ion-icon>
+                      <span class='my-3'>Создать пост</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </header>
+          </div>
+          <div class="navbar-end">
+            <a href="/" class="navbar-item {% if request.path == '/' %} is-active {% endif %}"> Home </a>
+            <a href="/about" class="navbar-item {% if request.path == '/about/' %} is-active {% endif %}"> About </a>
+            <a href="/contacts" class="navbar-item {% if request.path == '/contacts/' %} is-active {% endif %}">
+              Contacts </a>
+          </div>
         </div>
-   
-        <div class="hero-body">   
-            {% block content %}
-            {% endblock %}     
-        </div>
-      </section>
+      </div>
+    </header>
+  </div>
+
+  <div class="hero-body">
+    {% block content %}
+    {% endblock %}
+  </div>
+  </section>
 </body>
+
 </html>

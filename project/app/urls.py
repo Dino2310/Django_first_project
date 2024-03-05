@@ -8,7 +8,8 @@ urlpatterns = [
     path('contacts/', views.contacts, name='contacts'),
     path("post/<str:slug>", views.post_detal, name="post"),
     path("author/<str:at>", views.author_detal, name="author"),
-    path("err", views.err, name = 'err')
+    path("err", views.err, name = 'err'),
+    path('post_create', views.post_create, name = "post_create")
 ]
 
 handler404 = 'app.views.err'
