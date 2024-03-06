@@ -55,6 +55,35 @@
             <a href="/about" class="navbar-item {% if request.path == '/about/' %} is-active {% endif %}"> About </a>
             <a href="/contacts" class="navbar-item {% if request.path == '/contacts/' %} is-active {% endif %}">
               Contacts </a>
+            <div class="navbar-item">
+              <div class="dropdown is-hoverable ">
+                <div class="dropdown-trigger">
+                  <a class="button is-info if-outlined">
+                    <ion-icon name='people-circle-outline' class="is-size-5"></ion-icon>
+                  </a>
+                </div>
+                <div class="dropdown-menu ">
+                  <div class="dropdown-content">
+                    <a href="{% url 'users:sign_in' %}">
+                      <ion-icon name='person-outline' class="is-size-5 ml-1"></ion-icon>
+                      <span class='my-3'>Войти</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-content">
+                    <a href="{% url 'users:sign_out' %}">
+                      <ion-icon name='person-add-outline' class="is-size-5 ml-1"></ion-icon>
+                      <span class='my-3'>Зарегистрироваться</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-content">
+                    <a href="{% url 'users:sign_up' %}">
+                      <ion-icon name='person-remove-outline' class="is-size-5 ml-1"></ion-icon>
+                      <span class='my-3'>Выход</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

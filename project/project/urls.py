@@ -23,7 +23,8 @@ from django.conf.urls import handler404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('app.urls', 'app'), namespace = 'app'))
+    path('', include(('app.urls', 'app'), namespace = 'app')),
+    path('users/', include(('users.urls', 'ausers'), namespace = 'users'))
 ] 
 
 urlpatterns += static(
