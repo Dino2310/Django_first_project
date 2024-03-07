@@ -3,6 +3,7 @@ from django.http import  HttpResponseNotFound
 from .models import Post, Product
 from django.contrib.auth.models import User
 from .contentTest import abouts, conatact
+# from .tg import bot
 
 
 def index(request):
