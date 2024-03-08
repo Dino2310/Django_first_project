@@ -17,9 +17,9 @@ class PostForm(forms.ModelForm):
         model = Post
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(label="Картинки для поста", widget=forms.FileInput(
-        attrs={'multiple':True}
-    ))
     class Meta:
         model = Photo
-        field = ['image']
+        fields = ['image']
+        widgets = {
+            'image' : forms.ImageField()
+            }

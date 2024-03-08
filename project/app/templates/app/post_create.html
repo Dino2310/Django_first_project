@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content box">
+        <div class="title"> Создание поста</div>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {% for field in post %}
+            <div class="field">
+                <div class="control">
+                    {{field}}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="file field">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="images" multiple>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <ion-icon name = "cloud-upload-outline"></ion-icon>
+                    </span>
+                    <span class="file-label">
+                      Выберите файл(ы)…
+                    </span>
+                  </span>
+                </label>
+              </div>
+            <button class="button is-fullwidth is-success">отправить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
