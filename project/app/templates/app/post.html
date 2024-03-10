@@ -63,13 +63,19 @@
                     <ion-icon name='thumbs-down'></ion-icon>
                 </button>
             </div>
-            <div class="field my-4">
-                <input type="text" class="input is-fullwidth">
-                <br>
-                <div class="buttons is-right">
-                    <button class="button is-medium is-info">Отправить</button>
+            <form action="" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="field">
+                    <div class="control mt-6">
+                        <input class="input" type="text" id='coment_in' name="comment" ,
+                            placeholder="добавьте комментарий...">
+                    </div>
                 </div>
-            </div>
+                <button class="button is-fullwidth is-success" id='form_com'>
+                    Просмотреть все комментарии к посту
+                </button>
+
+            </form>
         </div>
     </div>
 </div>

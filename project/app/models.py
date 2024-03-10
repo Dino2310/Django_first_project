@@ -33,6 +33,11 @@ class Post(models.Model):
     # auto_now_add - снимок и автоматическое схораниение времени только один раз
     # unique - указывает на обязательную уникальность занчения в стобце
 
+class Comments(models.Model):
+    post = models.ForeignKey(Post, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    body = models.TextField()
+    date = models.DateField(auto_now_add = True)
 
 
 class Product (models.Model):

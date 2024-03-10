@@ -9,6 +9,7 @@ __pycache__/
 .vscode/
 venv/
 ev/
+бекап/
 __pycache__/
 # C extensions
 *.so

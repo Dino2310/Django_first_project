@@ -23,3 +23,9 @@ class ImageForm(forms.ModelForm):
         widgets = {
             'image' : forms.ImageField()
             }
+        
+class CommentForm(forms.ModelForm):
+    body = forms.CharField(required= False)
+    class Meta:
+        fields = ["body"]
+        model = Comments
