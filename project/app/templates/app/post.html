@@ -67,8 +67,12 @@
                 {% csrf_token %}
                 <div class="field">
                     <div class="control mt-6">
+                        {% if user.is_authenticated %}
                         <input class="input" type="text" id='coment_in' name="comment" ,
                             placeholder="добавьте комментарий...">
+                        {% else %}
+                        Зарегистрируйтесь, что-бы оставить комментарий
+                        {% endif %}
                     </div>
                 </div>
                 <button class="button is-fullwidth is-success" id='form_com'>

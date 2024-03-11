@@ -24,8 +24,8 @@ def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
     if request.method == 'POST':
         answer = CommentForm(request.POST)
-        if request._post["comment"]:
-            if answer.is_valid():
+        if "comment" in request._post:
+            if answer.is_valid() and request._post["comment"]:
                 instance = answer.save(commit=False)
                 instance.body = request._post["comment"]
                 instance.user = request.user
