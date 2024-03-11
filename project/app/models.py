@@ -39,6 +39,9 @@ class Comments(models.Model):
     body = models.TextField()
     date = models.DateField(auto_now_add = True)
 
+    def __str__(self) -> str:
+        return self.body
+
 
 class Product (models.Model):
     name = models.CharField(max_length = 150)

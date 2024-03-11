@@ -4,6 +4,7 @@ from .models import Post, Product, Photo, Comments
 from django.contrib.auth.models import User
 from .contentTest import abouts, conatact
 from .forms import PostForm, ImageForm, CommentForm
+import re
 
 
 
@@ -24,16 +25,15 @@ def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
     if request.method == 'POST':
         answer = CommentForm(request.POST)
-        if "comment" in request._post:
-            if answer.is_valid() and request._post["comment"]:
-                instance = answer.save(commit=False)
-                instance.body = request._post["comment"]
-                instance.user = request.user
-                instance.post = posts[0]
-                instance.save()
+        if answer.is_valid() and not(re.search(r'>\n(.+?)</text', str(answer))  is None):
+            instance = answer.save(commit=False)
+            instance.user = request.user
+            instance.post = posts[0]
+            instance.save()
         list_comm = Comments.objects.filter(post__id = posts[0].__dict__['id'])
         return render(request, "app/comments.html", {"comments":list_comm})
-    if posts: return render(request, "app/post.html", {"post" :posts[0]})
+    comment = CommentForm()
+    if posts: return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment})
     return err(request, 1)
 
 def author_detal(request, at):
