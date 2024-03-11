@@ -59,10 +59,26 @@
               <div class="dropdown is-hoverable ">
                 <div class="dropdown-trigger">
                   <a class="button is-info if-outlined">
-                    <ion-icon name='people-circle-outline' class="is-size-5"></ion-icon>
+                    <div class="is-centered"
+                      style="padding: 3px; background-color: aliceblue; border-radius: 5px; color: black;">
+                      Привет, <br>
+                      {% if user.is_authenticated %}
+                      {{user.username}}
+                      {% else %}
+                      Аноним
+                      {% endif %}
+                    </div>
                   </a>
                 </div>
                 <div class="dropdown-menu ">
+                  {% if user.is_authenticated %}
+                  <div class="dropdown-content">
+                    <a href="{% url 'users:sign_out' %}">
+                      <ion-icon name='person-remove-outline' class="is-size-5 ml-1"></ion-icon>
+                      <span class='my-3'>Выход</span>
+                    </a>
+                  </div>
+                  {% else %}
                   <div class="dropdown-content">
                     <a href="{% url 'users:sign_in' %}">
                       <ion-icon name='person-outline' class="is-size-5 ml-1"></ion-icon>
@@ -70,23 +86,20 @@
                     </a>
                   </div>
                   <div class="dropdown-content">
-                    <a href="{% url 'users:sign_out' %}">
-                      <ion-icon name='person-add-outline' class="is-size-5 ml-1"></ion-icon>
-                      <span class='my-3'>Зарегистрироваться</span>
-                    </a>
-                  </div>
-                  <div class="dropdown-content">
                     <a href="{% url 'users:sign_up' %}">
-                      <ion-icon name='person-remove-outline' class="is-size-5 ml-1"></ion-icon>
-                      <span class='my-3'>Выход</span>
+                      <ion-icon name='person-add-outline' class="is-size-5 ml-1"></ion-icon>
+                      <span class='my-3'>Регистрация</span>
                     </a>
                   </div>
+                  {% endif %}
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
+
     </header>
   </div>
 
