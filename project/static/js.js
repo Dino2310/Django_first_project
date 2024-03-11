@@ -1,19 +1,12 @@
-let a = document.querySelector('.image-div')
-
-setInterval(
-    () => { a.style.color = 'red' }, 500
-)
-setInterval(
-    () => { a.style.color = 'black' }, 1000
-)
 
 let input = document.querySelector("#coment_in")
-input.addEventListener("input",()=>{
-    console.log("Событие");
-    if (input.value){
-        document.querySelector("#form_com").innerHTML = 'Отправить комментарий...'
-    }
-    else{
-        document.querySelector("#form_com").innerHTML = 'Просмотреть все комментарии к посту'
-    }
-})
+
+function change_name_button_comments(){
+
+    document.querySelector("#form_com").innerHTML = input.value?
+    'Отправить комментарий...' :
+    'Просмотреть все комментарии к посту'  
+}
+
+
+input.addEventListener("input", change_name_button_comments)
