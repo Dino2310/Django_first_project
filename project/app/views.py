@@ -4,7 +4,6 @@ from .models import Post, Product, Photo, Comments
 from django.contrib.auth.models import User
 from .contentTest import abouts, conatact
 from .forms import PostForm, ImageForm, CommentForm
-import re
 
 
 
@@ -25,7 +24,7 @@ def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
     if request.method == 'POST':
         answer = CommentForm(request.POST)
-        if answer.is_valid() and not(re.search(r'>\n(.+?)</text', str(answer))  is None):
+        if answer.is_valid():
             instance = answer.save(commit=False)
             instance.user = request.user
             instance.post = posts[0]

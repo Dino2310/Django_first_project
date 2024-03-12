@@ -10,3 +10,4 @@ function change_name_button_comments(){
 
 
 input.addEventListener("input", change_name_button_comments)
+input.required = ''

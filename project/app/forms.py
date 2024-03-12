@@ -25,7 +25,7 @@ class ImageForm(forms.ModelForm):
             }
         
 class CommentForm(forms.ModelForm):
-    body = forms.CharField(required= False,widget=forms.Textarea(
+    body = forms.CharField(widget=forms.Textarea(
         attrs={'class':'input', 'placeholder':'добавьте комментарий...', 'id':'coment_in'}
     ))
     class Meta:
