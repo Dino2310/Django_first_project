@@ -9,5 +9,7 @@ function change_name_button_comments(){
 }
 
 
+
+if (input){
 input.addEventListener("input", change_name_button_comments)
-input.required = ''
+input.required = ''}

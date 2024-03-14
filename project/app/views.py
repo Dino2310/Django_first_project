@@ -22,17 +22,19 @@ def contacts(request):
 
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
-    if request.method == 'POST':
-        answer = CommentForm(request.POST)
-        if answer.is_valid():
-            instance = answer.save(commit=False)
-            instance.user = request.user
-            instance.post = posts[0]
-            instance.save()
-        list_comm = Comments.objects.filter(post__id = posts[0].__dict__['id'])
-        return render(request, "app/comments.html", {"comments":list_comm})
-    comment = CommentForm()
-    if posts: return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment})
+    print(posts)
+    if posts:
+        if request.method == 'POST':
+            answer = CommentForm(request.POST)
+            if answer.is_valid():
+                instance = answer.save(commit=False)
+                instance.user = request.user
+                instance.post = posts[0]
+                instance.save()
+            list_comm = Comments.objects.filter(post__id = posts[0].__dict__['id'])
+            return render(request, "app/comments.html", {"comments":list_comm})
+        comment = CommentForm()
+        return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment})
     return err(request, 1)
 
 def author_detal(request, at):

@@ -51,10 +51,6 @@
             </div>
           </div>
           <div class="navbar-end">
-            <a href="/" class="navbar-item {% if request.path == '/' %} is-active {% endif %}"> Home </a>
-            <a href="/about" class="navbar-item {% if request.path == '/about/' %} is-active {% endif %}"> About </a>
-            <a href="/contacts" class="navbar-item {% if request.path == '/contacts/' %} is-active {% endif %}">
-              Contacts </a>
             <div class="navbar-item">
               <div class="dropdown is-hoverable ">
                 <div class="dropdown-trigger">
@@ -96,6 +92,10 @@
               </div>
 
             </div>
+            <a href="/" class="navbar-item {% if request.path == '/' %} is-active {% endif %}"> Home </a>
+            <a href="/about" class="navbar-item {% if request.path == '/about/' %} is-active {% endif %}"> About </a>
+            <a href="/contacts" class="navbar-item {% if request.path == '/contacts/' %} is-active {% endif %}">
+              Contacts </a>
           </div>
         </div>
       </div>
