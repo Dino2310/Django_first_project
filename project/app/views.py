@@ -22,7 +22,6 @@ def contacts(request):
 
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
-    print(posts)
     if posts:
         if request.method == 'POST':
             answer = CommentForm(request.POST)

@@ -19,6 +19,7 @@ class Post(models.Model):
     #DateTimeField  - поле хранящее дату и время
     update_at = models.DateTimeField(auto_now = True)
     author = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
+    is_allowed  = models.BooleanField(blank = True)
     
 
 

@@ -11,9 +11,11 @@ class PostForm(forms.ModelForm):
     slug = forms.CharField(widget=forms.TextInput(
         attrs={'class':'input', 'placeholder':'Slug поста'}
     ))
+    is_allowed  = forms.BooleanField(required=False)
+
 
     class Meta:
-        fields = ['title', 'content', 'slug']
+        fields = ['title', 'content', 'slug', "is_allowed"]
         model = Post
 
 class ImageForm(forms.ModelForm):
