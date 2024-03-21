@@ -22,7 +22,6 @@ def contacts(request):
 
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
-    print(posts)
     if posts:
         if request.method == 'POST':
             answer = CommentForm(request.POST)
@@ -51,6 +50,7 @@ def err(request, exception):
 
 def post_create(request):
     post_form = PostForm(request.POST) 
+    print(post_form.errors)
     if request.method == "POST" and post_form.is_valid():
         instance = post_form.save(commit=False)
         instance.author = request.user

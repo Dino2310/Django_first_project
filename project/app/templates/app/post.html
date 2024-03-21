@@ -67,16 +67,20 @@
                 {% csrf_token %}
                 <div class="field">
                     <div class="control mt-6">
-                        {% if user.is_authenticated %}
+                        {% if  not post.is_allowed %}
+                        Этот пост комментировать запретил автор
+                        {% elif user.is_authenticated %}
                             {{add_comm.body}}
                         {% else %}
                             Зарегистрируйтесь, что-бы оставить комментарий
                         {% endif %}
                     </div>
                 </div>
+                {% if post.is_allowed %}
                 <button class="button is-fullwidth is-success" id='form_com'>
                     Просмотреть все комментарии к посту
                 </button>
+                {% endif %}
 
             </form>
         </div>

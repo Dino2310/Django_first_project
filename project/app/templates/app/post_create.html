@@ -10,13 +10,26 @@
         <form action="" method="post" enctype="multipart/form-data">
 
             {% csrf_token %}
-            {% for field in post %}
             <div class="field">
                 <div class="control">
-                    {{field}}
+                    {{post.title}}
                 </div>
             </div>
-            {% endfor %}
+            <div class="field">
+                <div class="control">
+                    {{post.content}}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{post.slug}}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{post.is_allowed}} Разрешение на комментарии
+                </div>
+            </div>
             <div class="file field">
                 <label class="file-label">
                   <input class="file-input" type="file" name="images" multiple>
@@ -24,12 +37,14 @@
                     <span class="file-icon">
                       <ion-icon name = "cloud-upload-outline"></ion-icon>
                     </span>
+                    
                     <span class="file-label">
                       Выберите файл(ы)…
                     </span>
                   </span>
                 </label>
               </div>
+              
             <button class="button is-fullwidth is-success">отправить</button>
         </form>
     </div>
