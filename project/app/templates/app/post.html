@@ -76,9 +76,11 @@
                         {% endif %}
                     </div>
                 </div>
+                {% if post.is_allowed %}
                 <button class="button is-fullwidth is-success" id='form_com'>
                     Просмотреть все комментарии к посту
                 </button>
+                {% endif %}
 
             </form>
         </div>

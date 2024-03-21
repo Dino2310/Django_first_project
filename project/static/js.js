@@ -1,6 +1,5 @@
 
 let input = document.querySelector("#coment_in")
-document.querySelector(".ch_false").input.required = ''
 function change_name_button_comments(){
 
     document.querySelector("#form_com").innerHTML = input.value?

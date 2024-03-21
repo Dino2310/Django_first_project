@@ -5,7 +5,7 @@ class PostForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(
         attrs={'class':'input', 'placeholder':'название поста'}
     ))
-    contetn = forms.CharField(widget=forms.Textarea(
+    content = forms.CharField(widget=forms.Textarea(
         attrs={'class':'input', 'placeholder':'описание поста'}
     ))
     slug = forms.CharField(widget=forms.TextInput(
