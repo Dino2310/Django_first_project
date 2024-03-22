@@ -22,6 +22,7 @@ def contacts(request):
 
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
+    comm = Comments.objects.filter(post__slug = slug)
     if posts:
         if request.method == 'POST':
             answer = CommentForm(request.POST)
@@ -30,10 +31,8 @@ def post_detal(request, slug):
                 instance.user = request.user
                 instance.post = posts[0]
                 instance.save()
-            list_comm = Comments.objects.filter(post__id = posts[0].__dict__['id'])
-            return render(request, "app/comments.html", {"comments":list_comm})
         comment = CommentForm()
-        return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment})
+        return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment, "comments": comm})
     return err(request, 1)
 
 def author_detal(request, at):
