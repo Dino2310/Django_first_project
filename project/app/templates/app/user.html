@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<div class="box is-3">
+    <img src="{{ user_data.photo.url }}" alt="">
+    <div>{{user_data.about}}</div>
+    <span class = 'userName'>{% if user.first_name %} 
+        {{user.first_name}}
+        {% else %} Имя не указанно
+        {% endif %}
+    </span>
+</div>
+
+
+<div class="box">{% for i in in_user %}
+    <div>{{i}}</div>
+    {% endfor %}
+    <div>{{data.first_name}}</div>
+    {{user}}
+</div>
+<div class="box">
+    <div class="title">Посты пользователя</div>
+    {% for i in user.post_set.all %}
+    <div>{{i}}</div>
+    {% endfor %}</div>
+<div class="box">
+    <div class="title">Комментарии пользователя</div>
+    {% for i in user.comments_set.all %}
+    {% if i.body  %}
+    <div>Комментарий: {{i.body}}</div>
+    <div>Название поста: {{i.post}}</div>
+    <div>Дата коммтприя: {{ i.date }}</div>
+    {% endif %}
+
+{% endfor %}
+</div>
+
+
+{% endblock %}

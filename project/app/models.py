@@ -1,7 +1,16 @@
+from typing import Any
 from django.db import models
 from django.contrib.auth.models import User
 
 
+    
+class SubUser(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE, null = True)
+    photo = models.ImageField(default="image.jpg", blank = True)
+    about = models.TextField(default="Расскажите о себе", blank = True)
+
+    def __str__(self):
+        return self.user.username
     
 
 
@@ -19,6 +28,7 @@ class Post(models.Model):
     #DateTimeField  - поле хранящее дату и время
     update_at = models.DateTimeField(auto_now = True)
     author = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
+    is_allowed  = models.BooleanField(blank = True)
     
 
 

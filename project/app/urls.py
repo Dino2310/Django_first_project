@@ -11,6 +11,7 @@ urlpatterns = [
     path("author/<str:at>", views.author_detal, name="author"),
     path("comments/<str:post>", views.comments, name="comments"),
     path("err", views.err, name = 'err'),
+    path("user/", views.user, name = 'user'),
     path('post_create', views.post_create, name = "post_create")
 ]
 

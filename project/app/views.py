@@ -3,7 +3,7 @@ from django.http import  HttpResponseNotFound
 from .models import Post, Product, Photo, Comments
 from django.contrib.auth.models import User
 from .contentTest import abouts, conatact
-from .forms import PostForm, ImageForm, CommentForm
+from .forms import *
 
 
 
@@ -20,9 +20,17 @@ def about (request):
 def contacts(request):
     return render(request, 'app/contacts.html',conatact)
 
+def user(request):
+    person = FormSubUser()
+    if not SubUser.objects.filter(user = request.user):
+        SubUser.objects.create(user = request.user)
+    user_form = UserForm()
+    user_data = SubUser.objects.get(user = request.user)
+    return render(request, "app/user.html",{"person": person, "in_user": user_form, "user_data":user_data} )
+
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
-    print(posts)
+    comm = Comments.objects.filter(post__slug = slug)
     if posts:
         if request.method == 'POST':
             answer = CommentForm(request.POST)
@@ -31,10 +39,8 @@ def post_detal(request, slug):
                 instance.user = request.user
                 instance.post = posts[0]
                 instance.save()
-            list_comm = Comments.objects.filter(post__id = posts[0].__dict__['id'])
-            return render(request, "app/comments.html", {"comments":list_comm})
         comment = CommentForm()
-        return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment})
+        return render(request, "app/post.html", {"post" :posts[0], 'add_comm':comment, "comments": comm})
     return err(request, 1)
 
 def author_detal(request, at):
@@ -51,6 +57,7 @@ def err(request, exception):
 
 def post_create(request):
     post_form = PostForm(request.POST) 
+    print(post_form.errors)
     if request.method == "POST" and post_form.is_valid():
         instance = post_form.save(commit=False)
         instance.author = request.user

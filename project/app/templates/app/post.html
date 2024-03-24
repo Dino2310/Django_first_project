@@ -1,84 +1,112 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="box " style="min-width: 100%; min-height: 80vh;">
-    <div class="title has-text-centered is-size-4 mt-6">{{post.title}}</div>
-    <div class="columns is-centered is-multiline">
-        {% for image in post.photo_set.all %}
-        <div class="column is-4">
-            <img src="{{ image.image.url }}" class="image post-image" alt="">
+<div class="clumns">
+    <div class="box cloumn" style="min-width: 100%; min-height: 80vh;">
+        <div class="title has-text-centered is-size-4 mt-6">{{post.title}}</div>
+        <div class="columns is-centered is-multiline">
+            {% for image in post.photo_set.all %}
+            <div class="column is-4">
+                <img src="{{ image.image.url }}" class="image post-image" alt="">
+            </div>
+            {% endfor %}
+            <div class="image-div"> {{ post.content}}</div>
         </div>
-        {% endfor %}
-        <div class="image-div"> {{ post.content}}</div>
-    </div>
-    <hr>
-    <div class="columns author">
-        <div class="column is-5">
-            <div class="box has-background-info-light">
-                <div class="columns">
-                    <div class="column is-3">
-                        <figure class="image">
-                            <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" alt="">
-                        </figure>
-                    </div>
-                    <div class="column is-1 flex">
-                        <div class="tag is-medium is-link">
-                            <ion-icon name="logo-linkedin"></ion-icon>
+        <hr>
+        <div class="columns author">
+            <div class="column is-5">
+                <div class="box has-background-info-light">
+                    <div class="columns">
+                        <div class="column is-3">
+                            <figure class="image">
+                                <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" alt="">
+                            </figure>
                         </div>
-                        <div class="tag is-medium is-link">
-                            <ion-icon name="paper-plane"></ion-icon>
+                        <div class="column is-1 flex">
+                            <div class="tag is-medium is-link">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+                            </div>
+                            <div class="tag is-medium is-link">
+                                <ion-icon name="paper-plane"></ion-icon>
+                            </div>
+                            <div class="tag is-medium is-link">
+                                <ion-icon name="logo-behance"></ion-icon>
+                            </div>
+                            <div class="tag is-medium is-link">
+                                <ion-icon name="logo-github"></ion-icon>
+                            </div>
                         </div>
-                        <div class="tag is-medium is-link">
-                            <ion-icon name="logo-behance"></ion-icon>
-                        </div>
-                        <div class="tag is-medium is-link">
-                            <ion-icon name="logo-github"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="column ml-5">
-                        <div class="title is-3 is-space">
-                            Иван Иванов
-                        </div>
-                        <div class="subtitle">
-                            Разработчик, Москва, Россия
-                            <a href="{% url 'app:author' post.author %}">посты автора</a>
-                        </div>
-                        <div class="content">
-                            <div class="title is-5"> Обо мне: </div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, quia?
+                        <div class="column ml-5">
+                            <div class="title is-3 is-space">
+                                Иван Иванов
+                            </div>
+                            <div class="subtitle">
+                                Разработчик, Москва, Россия
+                                <a href="{% url 'app:author' post.author %}">посты автора</a>
+                            </div>
+                            <div class="content">
+                                <div class="title is-5"> Обо мне: </div>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, quia?
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="column">
-            <div class="has-text-right">
-                <button class="button mr-6 px-6">
-                    <ion-icon name="chatbubble"></ion-icon>
-                </button>
-                <button class="button">
-                    <ion-icon name='thumbs-up'></ion-icon>
-                </button>
-                <button class="button">
-                    <ion-icon name='thumbs-down'></ion-icon>
-                </button>
-            </div>
-            <form action="" action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="field">
-                    <div class="control mt-6">
-                        {% if user.is_authenticated %}
+            <div class="column">
+                <div class="has-text-right">
+                    <button class="button mr-6 px-6">
+                        <ion-icon name="chatbubble"></ion-icon>
+                    </button>
+                    <button class="button">
+                        <ion-icon name='thumbs-up'></ion-icon>
+                    </button>
+                    <button class="button">
+                        <ion-icon name='thumbs-down'></ion-icon>
+                    </button>
+                </div>
+                <form action="" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="field">
+                        <div class="control mt-6">
+                            {% if not post.is_allowed %}
+                            Этот пост комментировать запретил автор
+                            {% elif user.is_authenticated %}
                             {{add_comm.body}}
-                        {% else %}
+                            {% else %}
                             Зарегистрируйтесь, что-бы оставить комментарий
-                        {% endif %}
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-                <button class="button is-fullwidth is-success" id='form_com'>
-                    Просмотреть все комментарии к посту
-                </button>
+                    {% if post.is_allowed %}
+                    <button class="button is-fullwidth is-success" id='form_com'>
+                        Просмотреть все комментарии к посту
+                    </button>
+                    {% endif %}
 
-            </form>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="box column">
+        <div class="columns">
+            {% for comment in comments %}
+            <div class="column is-5">
+                <div class="title is-3">
+                    {{comment.title}}
+                </div>
+                <div class="subtitle has-text-grey is-6">
+                    {{comment.date}}
+                </div>
+                <div class="contetn">
+                    {{comment.body}}
+                </div>
+                <div class="buttons">
+                    <button class="button is-small"><ion-icon name='thumbs-up'></ion-icon> </button>
+                    <button class="button is-small"><ion-icon name='thumbs-down'></ion-icon> </button>
+                    <button class="button is-small"><ion-icon name='arrow-undo'></ion-icon> </button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
