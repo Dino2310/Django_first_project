@@ -3,7 +3,7 @@ from django.http import  HttpResponseNotFound
 from .models import Post, Product, Photo, Comments
 from django.contrib.auth.models import User
 from .contentTest import abouts, conatact
-from .forms import PostForm, ImageForm, CommentForm
+from .forms import *
 
 
 
@@ -19,6 +19,14 @@ def about (request):
 
 def contacts(request):
     return render(request, 'app/contacts.html',conatact)
+
+def user(request):
+    person = FormSubUser()
+    if not SubUser.objects.filter(user = request.user):
+        SubUser.objects.create(user = request.user)
+    user_form = UserForm()
+    user_data = SubUser.objects.get(user = request.user)
+    return render(request, "app/user.html",{"person": person, "in_user": user_form, "user_data":user_data} )
 
 def post_detal(request, slug):
     posts =Post.objects.filter(slug=slug)
